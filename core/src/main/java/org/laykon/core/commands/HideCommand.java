@@ -8,11 +8,20 @@ import net.labymod.api.configuration.loader.Config;
 import org.laykon.core.config.ElementConfig;
 import org.laykon.core.config.MainConfig;
 
+
+// This is currently not implimented correctly. it doesn't modify the config how I would like it to
+
+
+
 public class HideCommand extends Command {
   ElementConfig cfg = new ElementConfig();
 
   public HideCommand() {
     super("hide", "h");
+  }
+
+  protected Class<ElementConfig> configClass(){
+    return ElementConfig.class;
   }
 
   @Override

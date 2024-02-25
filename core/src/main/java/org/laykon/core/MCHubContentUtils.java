@@ -16,6 +16,7 @@ public class MCHubContentUtils extends LabyAddon<MainConfig> {
     this.registerListener(new ExampleGameTickListener(this));
     this.registerCommand(new HideCommand());
 
+
   }
 
   @Override
