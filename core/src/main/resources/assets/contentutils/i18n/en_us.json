@@ -1,9 +1,24 @@
 {
-  "example": {
+  "contentutils": {
     "settings": {
-      "name": "contentutils",
+      "name": "MCHub Content Utilities",
       "enabled": {
         "name": "Enabled"
+      },
+      "keyBinding": {
+        "name": "Toggle Bind"
+      },
+      "elementConfig":{
+        "name": "Elements",
+        "scoreboardToggle": {
+          "name": "Scoreboard"
+        },
+        "chatToggle": {
+          "name": "Chat"
+        },
+        "bossBarToggle": {
+          "name": "Boss Bar"
+        }
       }
     }
   }
