@@ -23,10 +23,5 @@ public class MainConfig extends AddonConfig {
     return this.elementConfig;
   }
 
-  @KeyBindSetting
-  private final ConfigProperty<Key> keyBinding = new ConfigProperty<>(Key.H);
 
-  public ConfigProperty<Key> getKeyBinding(){
-    return this.keyBinding;
-  }
 }

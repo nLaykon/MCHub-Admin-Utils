@@ -5,7 +5,6 @@ import net.labymod.api.configuration.loader.Config;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
 
 public class ElementConfig extends Config {
-
   @SwitchSetting
   private final ConfigProperty<Boolean> scoreboardToggle = new ConfigProperty<>(true);
 
@@ -28,4 +27,5 @@ public class ElementConfig extends Config {
   public ConfigProperty<Boolean> getBossBarToggle() {
     return this.bossBarToggle;
   }
+
 }

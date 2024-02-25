@@ -5,9 +5,6 @@
       "enabled": {
         "name": "Enabled"
       },
-      "keyBinding": {
-        "name": "Toggle Bind"
-      },
       "elementConfig":{
         "name": "Elements",
         "scoreboardToggle": {

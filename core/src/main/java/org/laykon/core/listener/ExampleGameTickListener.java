@@ -19,6 +19,6 @@ public class ExampleGameTickListener {
       return;
     }
 
-    this.addon.logger().info(this.addon.configuration().enabled().get() ? "enabled" : "disabled");
+    this.addon.logger().info(this.addon.configuration().elementConfig.getChatToggle().get().toString());
   }
 }

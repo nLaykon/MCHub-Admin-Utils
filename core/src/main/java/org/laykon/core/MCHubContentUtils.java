@@ -2,7 +2,7 @@ package org.laykon.core;
 
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.models.addon.annotation.AddonMain;
-import org.laykon.core.commands.HideContentCommand;
+import org.laykon.core.commands.HideCommand;
 import org.laykon.core.config.MainConfig;
 import org.laykon.core.listener.ExampleGameTickListener;
 
@@ -14,7 +14,7 @@ public class MCHubContentUtils extends LabyAddon<MainConfig> {
     this.registerSettingCategory();
 
     this.registerListener(new ExampleGameTickListener(this));
-    this.registerCommand(new HideContentCommand());
+    this.registerCommand(new HideCommand());
 
   }
 
