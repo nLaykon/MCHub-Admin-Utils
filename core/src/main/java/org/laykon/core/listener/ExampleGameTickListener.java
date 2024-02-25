@@ -3,13 +3,13 @@ package org.laykon.core.listener;
 import net.labymod.api.event.Phase;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.lifecycle.GameTickEvent;
-import org.laykon.core.ExampleAddon;
+import org.laykon.core.MCHubContentUtils;
 
 public class ExampleGameTickListener {
 
-  private final ExampleAddon addon;
+  private final MCHubContentUtils addon;
 
-  public ExampleGameTickListener(ExampleAddon addon) {
+  public ExampleGameTickListener(MCHubContentUtils addon) {
     this.addon = addon;
   }
 

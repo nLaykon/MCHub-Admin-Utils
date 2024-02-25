@@ -12,7 +12,7 @@ java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 labyMod {
     defaultPackageName = "org.laykon" //change this to your main package name (used by all modules)
     addonInfo {
-        namespace = "MCHub"
+        namespace = "contentutils"
         displayName = "MCHub Content Utils"
         author = "Laykon"
         description = "Content creation utilities for MChub"

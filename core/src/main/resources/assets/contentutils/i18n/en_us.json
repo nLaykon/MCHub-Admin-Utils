@@ -1,7 +1,7 @@
 {
   "example": {
     "settings": {
-      "name": "ExampleAddon",
+      "name": "contentutils",
       "enabled": {
         "name": "Enabled"
       }

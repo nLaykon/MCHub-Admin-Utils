@@ -3,10 +3,11 @@ package org.laykon.core;
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.models.addon.annotation.AddonMain;
 import org.laykon.core.commands.HideContentCommand;
+import org.laykon.core.config.MainConfig;
 import org.laykon.core.listener.ExampleGameTickListener;
 
 @AddonMain
-public class ExampleAddon extends LabyAddon<ExampleConfiguration> {
+public class MCHubContentUtils extends LabyAddon<MainConfig> {
 
   @Override
   protected void enable() {
@@ -19,7 +20,7 @@ public class ExampleAddon extends LabyAddon<ExampleConfiguration> {
   }
 
   @Override
-  protected Class<ExampleConfiguration> configurationClass() {
-    return ExampleConfiguration.class;
+  protected Class<MainConfig> configurationClass() {
+    return MainConfig.class;
   }
 }
