@@ -1,13 +1,13 @@
-package org.example.core.commands;
+package org.laykon.core.commands;
 
 import net.labymod.api.client.chat.command.Command;
 import net.labymod.api.client.component.Component;
 import net.labymod.api.client.component.format.NamedTextColor;
 
-public class ExamplePingCommand extends Command {
+public class HideContentCommand extends Command {
 
-  public ExamplePingCommand() {
-    super("ping", "pong");
+  public HideContentCommand() {
+    super("hide", "h");
 
     this.withSubCommand(new ExamplePingSubCommand());
   }
