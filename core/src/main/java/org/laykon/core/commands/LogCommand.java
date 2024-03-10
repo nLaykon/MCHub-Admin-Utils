@@ -28,13 +28,14 @@ public class LogCommand extends Command {
         return true;
       }
       // Check if there are 3 arguments
-      if (arguments.length != 3) {
-        displayMessage("§cCommand Usage: /log Name Reason_For_Punish ImgurLink");
+      if (!(arguments.length >= 3)) {
+        displayMessage("§cCommand Usage: /log Name Reason For Punish ImgurLink");
         return true;
       }
 
       // Check if the third argument contains an Imgur link
-      if (!arguments[2].contains("https://i.imgur.com/")) {
+      //if (!arguments[2].contains("https://i.imgur.com/")) {
+      if (!arguments[(arguments.length - 1)].contains("https://i.imgur.com/")) {
         displayMessage("§cError: Arg3 Did not contain an imgur link");
         return true;
       }
@@ -44,30 +45,40 @@ public class LogCommand extends Command {
         webhook.setAvatarUrl(
             "https://cdn.discordapp.com/avatars/256116115422314496/1a69f18e8e9405ed31f26b637df752b4.png");
       }
+      String args = "";
+      int argLength = arguments.length;
+      for (int i = 1; i < argLength - 1; i++) {
+        args = args.concat(" ").concat(arguments[i]);
+        displayMessage("§cArgument " + args);
+      }
+
       webhook.setUsername("MCHub Logs");
 
       Thread thread = new Thread(() -> {
-          displayMessage("§dLogging to Discord...");
-          webhook.setContent(arguments[0]);
-          webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                  .setTitle("Punishment")
-                  .addField("Player", arguments[0], false)
-                  .addField("Reason", arguments[1].replace("_", " "), false)
-                  .setImage(arguments[2]) // Set the Imgur link as the image of the embed
-                  .setColor(Color.CYAN));
+        displayMessage("§dLogging to Discord...");
+        webhook.setContent(arguments[0]);
+        webhook.addEmbed(new DiscordWebhook.EmbedObject()
+            .setTitle("Punishment")
+            //  .setDescription("Punishment for " + arguments[0] + " Has been logged") // Working
+            //.setDescription("Reason " + args + " ") // Not Working
+            .setDescription("Reason " + arguments[1] + arguments[2] + arguments[3] + arguments[4] + " ") // also not working
+            .addField("Player", arguments[0], false)
+            .addField("Reason", arguments[1].replace("_", " "), false)
+            .setImage(arguments[2])
+            .setColor(Color.CYAN));
 
-          long timeTaken;
-          try {
-              long startTime = System.currentTimeMillis();
-              webhook.execute();
-              long endTime = System.currentTimeMillis();
-              timeTaken = endTime - startTime;
-          } catch (IOException e) {
-              e.printStackTrace();
-              displayMessage("§cError: " + e.getMessage());
-              throw new RuntimeException(e);
-          }
-          displayMessage("§aLogged to Discord (" + timeTaken + "ms)");
+        long timeTaken;
+        try {
+          long startTime = System.currentTimeMillis();
+          webhook.execute();
+          long endTime = System.currentTimeMillis();
+          timeTaken = endTime - startTime;
+        } catch (IOException e) {
+          e.printStackTrace();
+          displayMessage("§cError: " + e.getMessage());
+          throw new RuntimeException(e);
+        }
+        displayMessage("§aLogged to Discord (" + timeTaken + "ms)");
       });
       thread.start();
     } else {
@@ -75,6 +86,7 @@ public class LogCommand extends Command {
     }
     return true;
   }
+
   //this might be useless lol
   protected Class<MainConfig> configurationClass() {
     return MainConfig.class;
