@@ -76,7 +76,6 @@ public class LogCommand extends Command {
     return true;
   }
   //this might be useless lol
-
   protected Class<MainConfig> configurationClass() {
     return MainConfig.class;
   }
