@@ -88,6 +88,7 @@ public class LogCommand extends Command {
   }
 
   //this might be useless lol
+
   protected Class<MainConfig> configurationClass() {
     return MainConfig.class;
   }
