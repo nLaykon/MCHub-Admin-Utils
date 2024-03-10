@@ -28,14 +28,15 @@ public class LogCommand extends Command {
         return true;
       }
       // Check if there are 3 arguments
-      if (!(arguments.length >= 3)) {
+      if (!(arguments.length == 3)) {
         displayMessage("§cCommand Usage: /log Name Reason For Punish ImgurLink");
+        displayMessage("§cExpected 3 arguments, got " + arguments.length);
         return true;
       }
 
       // Check if the third argument contains an Imgur link
-      //if (!arguments[2].contains("https://i.imgur.com/")) {
-      if (!arguments[(arguments.length - 1)].contains("https://i.imgur.com/")) {
+      if (!arguments[2].contains("https://i.imgur.com/")) {
+      //if (!arguments[(arguments.length - 1)].contains("https://i.imgur.com/")) {
         displayMessage("§cError: Arg3 Did not contain an imgur link");
         return true;
       }
@@ -45,12 +46,6 @@ public class LogCommand extends Command {
         webhook.setAvatarUrl(
             "https://cdn.discordapp.com/avatars/256116115422314496/1a69f18e8e9405ed31f26b637df752b4.png");
       }
-      String args = "";
-      int argLength = arguments.length;
-      for (int i = 1; i < argLength - 1; i++) {
-        args = args.concat(" ").concat(arguments[i]);
-        displayMessage("§cArgument " + args);
-      }
 
       webhook.setUsername("MCHub Logs");
 
@@ -59,9 +54,10 @@ public class LogCommand extends Command {
         webhook.setContent(arguments[0]);
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
             .setTitle("Punishment")
-            //  .setDescription("Punishment for " + arguments[0] + " Has been logged") // Working
+            //.setDescription(String.format("arg1 %s arg2 %s arg3 %s arg4 %s", arguments[0], arguments[1], arguments[2], arguments[3])) // Not Working
+            //.setDescription("Punishment for " + arguments[0] + " Has been logged") // Working
             //.setDescription("Reason " + args + " ") // Not Working
-            .setDescription("Reason " + arguments[1] + arguments[2] + arguments[3] + arguments[4] + " ") // also not working
+            //.setDescription("Reason " + arguments[1] + arguments[2] + arguments[3] + arguments[4] + " ") // also not working
             .addField("Player", arguments[0], false)
             .addField("Reason", arguments[1].replace("_", " "), false)
             .setImage(arguments[2])
