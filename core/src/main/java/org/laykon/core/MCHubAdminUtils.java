@@ -16,7 +16,6 @@ public class MCHubAdminUtils extends LabyAddon<MainConfig> {
     this.registerListener(new ExampleGameTickListener(this));
     this.registerCommand(new LogCommand(this.configuration()));
 
-
   }
 
   @Override

@@ -3,12 +3,13 @@ package org.laykon.core.listener;
 import net.labymod.api.event.Phase;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.lifecycle.GameTickEvent;
-import org.laykon.core.MCHubAdminUtils;
+import org.laykon.core.MCHubContentUtils;
 
 public class ExampleGameTickListener {
-  private final MCHubAdminUtils addon;
 
-  public ExampleGameTickListener(MCHubAdminUtils addon) {
+  private final MCHubContentUtils addon;
+
+  public ExampleGameTickListener(MCHubContentUtils addon) {
     this.addon = addon;
   }
 
@@ -17,5 +18,7 @@ public class ExampleGameTickListener {
     if (event.phase() != Phase.PRE) {
       return;
     }
+
+    this.addon.logger().info(this.addon.configuration().elementConfig.getChatToggle().get().toString());
   }
 }
