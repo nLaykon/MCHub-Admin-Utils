@@ -52,7 +52,7 @@ public class LogCommand extends Command {
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
     .setTitle("Punishment")
     .addField("Player", arguments[0], false)
-    .addField("Reason", arguments[1], false)
+    .addField("Reason", arguments[1].replace("_", " "), false)
     .setImage(arguments[2]) // Set the Imgur link as the image of the embed
     .setColor(Color.CYAN));
 
