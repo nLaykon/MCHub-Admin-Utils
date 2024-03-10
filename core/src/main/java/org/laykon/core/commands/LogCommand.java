@@ -47,23 +47,27 @@ public class LogCommand extends Command {
       webhook.setUsername("MCHub Logs");
 
       Thread thread = new Thread(() -> {
-        displayMessage("§dLogging to Discord...");
-        webhook.setContent(arguments[0]);
-        webhook.addEmbed(new DiscordWebhook.EmbedObject()
-    .setTitle("Punishment")
-    .addField("Player", arguments[0], false)
-    .addField("Reason", arguments[1].replace("_", " "), false)
-    .setImage(arguments[2]) // Set the Imgur link as the image of the embed
-    .setColor(Color.CYAN));
+          displayMessage("§dLogging to Discord...");
+          webhook.setContent(arguments[0]);
+          webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                  .setTitle("Punishment")
+                  .addField("Player", arguments[0], false)
+                  .addField("Reason", arguments[1].replace("_", " "), false)
+                  .setImage(arguments[2]) // Set the Imgur link as the image of the embed
+                  .setColor(Color.CYAN));
 
-        try {
-          webhook.execute();
-        } catch (IOException e) {
-          e.printStackTrace();
-          displayMessage("§cError: " + e.getMessage());
-          throw new RuntimeException(e);
-        }
-        displayMessage("§aLogged to Discord");
+          long timeTaken;
+          try {
+              long startTime = System.currentTimeMillis();
+              webhook.execute();
+              long endTime = System.currentTimeMillis();
+              timeTaken = endTime - startTime;
+          } catch (IOException e) {
+              e.printStackTrace();
+              displayMessage("§cError: " + e.getMessage());
+              throw new RuntimeException(e);
+          }
+          displayMessage("§aLogged to Discord (" + timeTaken + "ms)");
       });
       thread.start();
     } else {
