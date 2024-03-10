@@ -1,0 +1,17 @@
+{
+  "adminutils": {
+    "settings": {
+      "name": "MCHub Admin Utils",
+      "enabled": {
+        "name": "Enabled"
+      },
+      "webhookUrl": {
+        "name": "Webhook URL",
+        "description": "Put your Webhook URL in here"
+      },
+      "webhookImageURL": {
+        "name": "Webhook Image URL"
+      }
+    }
+  }
+}

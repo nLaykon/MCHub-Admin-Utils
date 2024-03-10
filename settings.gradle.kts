@@ -1,4 +1,4 @@
-rootProject.name = "labymod4-addon-template"
+rootProject.name = "MCHub-AdminUtils"
 
 pluginManagement {
     val labyGradlePluginVersion = "0.3.44"
