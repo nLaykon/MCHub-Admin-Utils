@@ -29,7 +29,7 @@ public class LogCommand extends Command {
       }
       // Check if there are 3 arguments
       if (!(arguments.length == 3)) {
-        displayMessage("§cCommand Usage: /log Name Reason For Punish ImgurLink");
+        displayMessage("§cCommand Usage: /log Name Reason_For_Punish ImgurLink");
         displayMessage("§cExpected 3 arguments, got " + arguments.length);
         return true;
       }
