@@ -1,7 +1,9 @@
 package org.laykon.core.commands;
 
 import com.sun.tools.javac.Main;
+import net.labymod.api.LabyAPI;
 import net.labymod.api.client.chat.command.Command;
+import net.labymod.api.client.entity.player.Player;
 import org.laykon.core.MCHubAdminUtils;
 import org.laykon.core.config.MainConfig;
 import org.laykon.core.utils.DiscordWebhook;
@@ -19,9 +21,7 @@ public class LogCommand extends Command {
 
   @Override
   public boolean execute(String prefix, String[] arguments) {
-    // Retrieve webhook URL from configuration
 
-    // Check if webhook URL is not blank
     if (!cfg.webhookUrl().get().isEmpty()) {
       DiscordWebhook webhook = new DiscordWebhook(cfg.webhookUrl().get());
       if (cfg.webhookImageURL().get().isEmpty()) {
