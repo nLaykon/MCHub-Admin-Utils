@@ -9,6 +9,8 @@ import org.laykon.core.config.MainConfig;
 import org.laykon.core.utils.DiscordWebhook;
 import java.awt.*;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LogCommand extends Command {
 
@@ -27,16 +29,7 @@ public class LogCommand extends Command {
       if (cfg.webhookImageURL().get().isEmpty()) {
         return true;
       }
-      // Check if there are 3 arguments
-      if (!(arguments.length == 3)) {
-        displayMessage("§cCommand Usage: /log Name Reason_For_Punish ImgurLink");
-        displayMessage("§cExpected 3 arguments, got " + arguments.length);
-        return true;
-      }
-
-      // Check if the third argument contains an Imgur link
-      if (!arguments[2].contains("https://i.imgur.com/")) {
-      //if (!arguments[(arguments.length - 1)].contains("https://i.imgur.com/")) {
+      if (!arguments[(arguments.length - 1)].contains("https://i.imgur.com/")) {
         displayMessage("§cError: Arg3 Did not contain an imgur link");
         return true;
       }
@@ -47,20 +40,34 @@ public class LogCommand extends Command {
             "https://cdn.discordapp.com/avatars/256116115422314496/1a69f18e8e9405ed31f26b637df752b4.png");
       }
 
+      String regex = "\\d+[smhdwy]";
+      Pattern pattern = Pattern.compile(regex);
+
+      String punLength = "NaN";
+
+      StringBuilder reason = new StringBuilder();
+
+      for (int i = 1; i < arguments.length - 1; i++){
+        if (containsShortLength(arguments[i], pattern)){
+          punLength = arguments[i];
+          continue;
+        }
+        reason.append(arguments[i]).append(" ");
+      }
+      String trimmedReason = reason.toString().trim();
+
       webhook.setUsername("MCHub Logs");
 
+      String finalPunLength = punLength;
       Thread thread = new Thread(() -> {
         displayMessage("§dLogging to Discord...");
         webhook.setContent(arguments[0]);
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
             .setTitle("Punishment")
-            //.setDescription(String.format("arg1 %s arg2 %s arg3 %s arg4 %s", arguments[0], arguments[1], arguments[2], arguments[3])) // Not Working
-            //.setDescription("Punishment for " + arguments[0] + " Has been logged") // Working
-            //.setDescription("Reason " + args + " ") // Not Working
-            //.setDescription("Reason " + arguments[1] + arguments[2] + arguments[3] + arguments[4] + " ") // also not working
             .addField("Player", arguments[0], false)
-            .addField("Reason", arguments[1].replace("_", " "), false)
-            .setImage(arguments[2])
+            .addField("Length", finalPunLength, false)
+            .addField("Reason", trimmedReason, false)
+            .setImage(arguments[arguments.length-1])
             .setColor(Color.CYAN));
 
         long timeTaken;
@@ -83,7 +90,10 @@ public class LogCommand extends Command {
     return true;
   }
 
-  //this might be useless lol
+  public static boolean containsShortLength(String input, Pattern pattern) {
+    Matcher matcher = pattern.matcher(input);
+    return matcher.matches();
+  }
 
   protected Class<MainConfig> configurationClass() {
     return MainConfig.class;
